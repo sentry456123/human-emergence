@@ -1,27 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public class Team : MonoBehaviour
+[Serializable]
+public class Team
 {
-	[SerializeField] private int team = 0;
+	[SerializeField] private int id;
 
-	public void SetTeam(int team)
+	public void SetID(int id)
 	{
-		this.team = team;
+		this.id = id;
 	}
 
-	public bool IsFriend(Team other)
+	public bool IsAlly(Team other)
 	{
-		if (other.team == 0)
+		if (other.id == 0)
 		{
 			return false;
 		}
-		return team == other.team;
+		return id == other.id;
 	}
 
 	public bool IsEnemy(Team other)
 	{
-		return !IsFriend(other);
+		return !IsAlly(other);
 	}
 }

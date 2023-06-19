@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4767855130586967657}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 7566514438415317194}
   - component: {fileID: 3320391426565488798}
   - component: {fileID: 4058279654560560466}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sniper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,10 +130,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687887ea1cc640e47ab3518129da918c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shooter: {fileID: 0}
   cooldown: 3
   recoilPerShot: 2
   maxRecoil: 2.5
-  bullet: {fileID: 2399262165505964112, guid: d2324c3c86d38e340add4523d2e0e958, type: 3}
+  bullet: {fileID: 4689763936418716206, guid: d2324c3c86d38e340add4523d2e0e958, type: 3}
   muzzle: {fileID: 2926632788630030760}
   shotSound: {fileID: 4058279654560560466}
 --- !u!82 &4058279654560560466
@@ -148,7 +149,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: df5152f7de2942e48a3b79e6fdaee1bc, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.478
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0

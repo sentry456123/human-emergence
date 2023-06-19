@@ -1,11 +1,12 @@
-using System;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.VFX;
+
+[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 
 public class Bullet : MonoBehaviour
 {
-	[SerializeField] private Team team;
+	[HideInInspector] public Team team;
+
 	[SerializeField] private float speed = 20.0f;
 	[SerializeField] private float range = 3.0f;
 	[SerializeField] private int damage = 1;
@@ -13,9 +14,9 @@ public class Bullet : MonoBehaviour
 	private Rigidbody2D rBody;
 	private float spawnedTime;
 
-	public int GetDamage()
+	public int Damage
 	{
-		return damage;
+		get { return damage; }
 	}
 
 	void Start()
@@ -29,23 +30,30 @@ public class Bullet : MonoBehaviour
 	{
 		if (spawnedTime + range / speed < Time.time)
 		{
-			Destroy(this.gameObject);
+			Destroy(gameObject);
 		}
 	}
 
 	void FixedUpdate()
 	{
-		rBody.MovePosition(rBody.position + new Vector2(transform.up.x, transform.up.y) * speed * Time.fixedDeltaTime);
+		rBody.MovePosition(rBody.position + speed * Time.fixedDeltaTime * new Vector2(transform.up.x, transform.up.y));
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
 		var obj = collision.gameObject;
 		if (obj.CompareTag("Bullet"))
-		{
 			return;
+		if (obj.TryGetComponent(out Unit unit))
+		{
+			if (unit.team.IsAlly(team))
+				return;
+			Destroy(gameObject);
+		} else if (obj.TryGetComponent(out Base bas))
+		{
+			if (bas.team.IsAlly(team))
+				return;
+			Destroy(gameObject);
 		}
-		
-		Destroy(this.gameObject);
 	}
 }

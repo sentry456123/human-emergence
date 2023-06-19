@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4689763936418716206}
   - component: {fileID: 5268319664103341849}
   m_Layer: 7
-  m_Name: Sniper Bullet
+  m_Name: Rifle Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.14150941, g: 0.14150941, b: 0.14150941, a: 1}
+  m_Color: {r: 0.46226418, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -107,16 +107,16 @@ CircleCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 64
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 64
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -135,13 +135,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5e4dc59117cf7647af2c575cb16e45a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  team: {fileID: 0}
-  speed: 60
-  range: 100
-  damage: 76
-  onHit:
-    m_PersistentCalls:
-      m_Calls: []
+  team:
+    id: 0
+  speed: 40
+  range: 50
+  damage: 24
 --- !u!50 &5268319664103341849
 Rigidbody2D:
   serializedVersion: 4
@@ -274,7 +272,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.14509805, g: 0.14509805, b: 0.14509805, a: 1}
+      key0: {r: 0.46274513, g: 0, b: 0, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}

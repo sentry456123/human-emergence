@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4767855130586967657}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,8 +43,8 @@ GameObject:
   - component: {fileID: 7566514438415317194}
   - component: {fileID: 3320391426565488798}
   - component: {fileID: 4058279654560560466}
-  m_Layer: 0
-  m_Name: SMG
+  m_Layer: 6
+  m_Name: AR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,8 +58,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6269937781927525285}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.909, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.6, z: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 0.1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4767855130586967657}
@@ -108,7 +108,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
+  m_Color: {r: 0, g: 0.37548542, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -130,10 +130,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 687887ea1cc640e47ab3518129da918c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 0.1
-  recoilPerShot: 0.2
-  maxRecoil: 10
-  bullet: {fileID: 2399262165505964112, guid: 47b768db797159748a8779b4d5bac127, type: 3}
+  shooter: {fileID: 0}
+  cooldown: 0.14
+  recoilPerShot: 0.5
+  maxRecoil: 5
+  bullet: {fileID: 4689763936418716206, guid: 5521887dd78af06418975893b98ff8ba, type: 3}
   muzzle: {fileID: 2926632788630030760}
   shotSound: {fileID: 4058279654560560466}
 --- !u!82 &4058279654560560466
@@ -146,9 +147,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 42f10336729d78f4c9805755eb19b194, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9a883c10b61790644b74387721d7aa5a, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.478
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
