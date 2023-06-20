@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 1131372679}
   - component: {fileID: 1131372681}
   - component: {fileID: 1131372680}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Red Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -406,6 +406,11 @@ MonoBehaviour:
     id: 1
   units:
   - {fileID: 3158264495997960880, guid: c7ffe71c6613b4441b9e229d5c154a26, type: 3}
+  - {fileID: 3158264495997960880, guid: b82d52d9975c44e44a15511f53ffd04f, type: 3}
+  - {fileID: 3158264495997960880, guid: 72ede460fa201124486c042930b6520b, type: 3}
+  - {fileID: 3158264495997960880, guid: 770fe8e5a60acfe4695c5e517e03cd4e, type: 3}
+  - {fileID: 3158264495997960880, guid: 283b60769e789074082a7f4fcc5ede61, type: 3}
+  - {fileID: 3158264495997960880, guid: 973ae1e90d4bec4439a1822ca234e344, type: 3}
   initialUnitRotation: {x: 0, y: 0, z: 0.70710677, w: -0.70710677}
   cooldown: 2
   maxHealth: 10000
@@ -470,16 +475,16 @@ BoxCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 192
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 192
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -510,7 +515,7 @@ GameObject:
   - component: {fileID: 1152671776}
   - component: {fileID: 1152671778}
   - component: {fileID: 1152671777}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Blue Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -599,7 +604,12 @@ MonoBehaviour:
   team:
     id: 2
   units:
+  - {fileID: 3158264495997960880, guid: c7ffe71c6613b4441b9e229d5c154a26, type: 3}
   - {fileID: 3158264495997960880, guid: b82d52d9975c44e44a15511f53ffd04f, type: 3}
+  - {fileID: 3158264495997960880, guid: 72ede460fa201124486c042930b6520b, type: 3}
+  - {fileID: 3158264495997960880, guid: 770fe8e5a60acfe4695c5e517e03cd4e, type: 3}
+  - {fileID: 3158264495997960880, guid: 283b60769e789074082a7f4fcc5ede61, type: 3}
+  - {fileID: 3158264495997960880, guid: 973ae1e90d4bec4439a1822ca234e344, type: 3}
   initialUnitRotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
   cooldown: 2
   maxHealth: 10000
@@ -664,16 +674,16 @@ BoxCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 192
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 192
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -785,8 +795,8 @@ Camera:
   m_GameObject: {fileID: 1221199800}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.31132078, g: 0.17776895, b: 0.08664116, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

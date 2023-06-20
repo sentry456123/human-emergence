@@ -6,6 +6,11 @@ public class Team
 {
 	[SerializeField] private int id;
 
+	public Team(int id)
+	{
+		this.id = id;
+	}
+
 	public void SetID(int id)
 	{
 		this.id = id;

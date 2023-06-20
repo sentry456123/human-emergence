@@ -112,7 +112,7 @@ MonoBehaviour:
   rotationModifier: 90
   maxHealth: 60
   weapon: {fileID: 556662143342955540}
-  vision: {fileID: 3434969419360380774}
+  vision: {fileID: 5897156949450209945}
 --- !u!58 &6040280874708774587
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -367,8 +367,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5798455780613323791}
-  - component: {fileID: 3434969419360380774}
-  - component: {fileID: 924735307877910135}
+  - component: {fileID: 6584331630258129212}
+  - component: {fileID: 5897156949450209945}
   m_Layer: 6
   m_Name: VIsion
   m_TagString: Untagged
@@ -391,8 +391,8 @@ Transform:
   m_Father: {fileID: 1202560435748544808}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &3434969419360380774
-PolygonCollider2D:
+--- !u!58 &6584331630258129212
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -410,10 +410,10 @@ PolygonCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
   m_ContactCaptureLayers:
     serializedVersion: 2
     m_Bits: 64
@@ -424,46 +424,9 @@ PolygonCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0, y: 0}
-      - {x: 21.650635, y: 12.5}
-      - {x: 20.478802, y: 14.339411}
-      - {x: 19.151112, y: 16.069689}
-      - {x: 17.67767, y: 17.67767}
-      - {x: 16.06969, y: 19.151112}
-      - {x: 14.339411, y: 20.478802}
-      - {x: 12.499999, y: 21.650637}
-      - {x: 10.565456, y: 22.657696}
-      - {x: 8.550504, y: 23.492315}
-      - {x: 6.4704766, y: 24.148146}
-      - {x: 4.3412056, y: 24.620193}
-      - {x: 2.178895, y: 24.904867}
-      - {x: -0.0000010927847, y: 25}
-      - {x: -2.1788943, y: 24.904867}
-      - {x: -4.3412046, y: 24.620193}
-      - {x: -6.470476, y: 24.148146}
-      - {x: -8.550503, y: 23.492315}
-      - {x: -10.565458, y: 22.657694}
-      - {x: -12.500002, y: 21.650635}
-      - {x: -14.339411, y: 20.4788}
-      - {x: -16.06969, y: 19.151112}
-      - {x: -17.67767, y: 17.67767}
-      - {x: -19.151112, y: 16.06969}
-      - {x: -20.478802, y: 14.339411}
-      - {x: -21.650635, y: 12.500002}
-      - {x: 0, y: 0}
-  m_UseDelaunayMesh: 0
---- !u!114 &924735307877910135
+  serializedVersion: 2
+  m_Radius: 15
+--- !u!114 &5897156949450209945
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -472,16 +435,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7244171416571379947}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d01e9f694e05d84fba8b0c7d61a7e78, type: 3}
+  m_Script: {fileID: 11500000, guid: f534c1a16b273ac45944f1cd8ca1c42d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 25
-  thickness: 1
-  smoothness: 24
-  totalAngle: 120
-  offsetRotation: 30
-  pizzaSlice: 1
-  advanced: 0
 --- !u!1 &7675164535588580439
 GameObject:
   m_ObjectHideFlags: 0

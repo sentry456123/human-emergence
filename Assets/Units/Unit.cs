@@ -1,6 +1,5 @@
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -15,13 +14,13 @@ public class Unit : MonoBehaviour
 	[SerializeField, Range(0, 360)] private float rotationModifier;
 	[SerializeField] private int maxHealth = 100;
 	[SerializeField] private Weapon weapon;
-	[SerializeField] private Collider2D vision;
+	[SerializeField] private Vision vision;
 
 	private HealthBar healthBar;
 	private int health;
-	private Quaternion initialRotation;
-	private bool lookingAround = false;
+	private Quaternion direction;
 	private bool moving = false;
+	private GameObject target;
 
 	public int Health
 	{
@@ -43,14 +42,23 @@ public class Unit : MonoBehaviour
 		this.weapon = weapon;
 	}
 
+	public void SetColor(Color color)
+	{
+		var spriteRenderer = GetComponent<SpriteRenderer>();
+		spriteRenderer.material.color = color;
+	}
+
 	void Start()
 	{
-		initialRotation = transform.rotation;
+		direction = transform.rotation;
 
 		healthBar = GetComponent<HealthBar>();
 		health = maxHealth;
 		healthBar.maxHealth = maxHealth;
 		healthBar.health = health;
+
+		vision.onTriggerStay = OnVisionTriggerStay;
+		vision.onTriggerExit = OnVisionTriggerExit;
 	}
 
 	void Update()
@@ -63,10 +71,6 @@ public class Unit : MonoBehaviour
 		healthBar.maxHealth = maxHealth;
 		healthBar.health = health;
 
-		float x = transform.position.x;
-		float y = transform.position.y;
-		float z = transform.position.z;
-		transform.position = new Vector3(x, y, z);
 		if (moving)
 		{
 			Move();
@@ -80,8 +84,7 @@ public class Unit : MonoBehaviour
 			return;
 		}
 
-		var target = Seek();
-		if (target)
+		if (target != null)
 		{
 			moving = false;
 			if (Target(target))
@@ -89,14 +92,9 @@ public class Unit : MonoBehaviour
 				weapon.SetTrigger(true);
 			}
 		}
-		else if (lookingAround)
-		{
-			moving = false;
-			LookAround();
-		}
 		else
 		{
-			transform.rotation = initialRotation;
+			LookForward();
 			moving = true;
 			weapon.SetTrigger(false);
 		}
@@ -112,54 +110,15 @@ public class Unit : MonoBehaviour
 				return;
 			}
 			health -= bullet.Damage;
-			lookingAround = true;
-			Invoke(nameof(StopLookingAround), 3.0f);
 		}
-	}
-
-	private GameObject Seek()
-	{
-		var filter = new ContactFilter2D();
-		filter.NoFilter();
-		filter.useTriggers = true;
-		var colliders = new List<Collider2D>(20);
-		vision.OverlapCollider(filter, colliders);
-		GameObject closest = null;
-		foreach (var collider in colliders)
+		else if (obj.TryGetComponent(out Base bas))
 		{
-			var obj = collider.gameObject;
-			if (obj == gameObject)
-				continue;
-			if (obj.TryGetComponent(out Unit unit))
+			if (bas.team.IsAlly(team))
 			{
-				if (unit.team.IsAlly(team))
-					continue;
-				if (closest == null)
-				{
-					closest = obj;
-					continue;
-				}
-				if (Distance(obj) < Distance(closest))
-				{
-					closest = obj;
-				}
+				return;
 			}
-			else if (obj.TryGetComponent(out Base bas))
-			{
-				if (bas.team.IsAlly(team))
-					continue;
-				if (closest == null)
-				{
-					closest = obj;
-					continue;
-				}
-				if (Distance(obj) < Distance(closest))
-				{
-					closest = obj;
-				}
-			}
+			health -= bas.Health;
 		}
-		return closest;
 	}
 
 	private float Distance(GameObject obj)
@@ -171,11 +130,16 @@ public class Unit : MonoBehaviour
 	{
 		Vector3 vectorToTarget = target.transform.position - transform.position;
 		float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - rotationModifier;
-		Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-		Quaternion targetRotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * RotationSpeed);
-		float rotationAmount = Quaternion.Angle(transform.rotation, targetRotation);
+		Quaternion quaternion = Quaternion.AngleAxis(angle, Vector3.forward);
+		Quaternion targetRotation = Quaternion.Slerp(transform.rotation, quaternion, Time.fixedDeltaTime * RotationSpeed);
+		float rotationAmount = Quaternion.Angle(transform.rotation, quaternion);
 		transform.rotation = targetRotation;
-		return rotationAmount < 3.0f;
+		return rotationAmount < 3.0f && rotationAmount > -3.0f;
+	}
+
+	private void LookForward()
+	{
+		transform.rotation = Quaternion.Slerp(transform.rotation, direction, Time.fixedDeltaTime * RotationSpeed);
 	}
 
 	private void Move()
@@ -183,13 +147,32 @@ public class Unit : MonoBehaviour
 		transform.Translate(0, MovingSpeed * Time.deltaTime, 0);
 	}
 
-	private void LookAround()
+	private void OnVisionTriggerStay(GameObject obj)
 	{
-		transform.Rotate(new Vector3(0.0f, 0.0f, 1.0f), RotationSpeed);
+		if (obj.TryGetComponent(out Unit unit))
+		{
+			if (unit.team.IsAlly(team))
+			{
+				return;
+			}
+			if (target == null)
+			{
+				target = obj;
+				return;
+			}
+			if (Distance(obj) < Distance(target))
+			{
+				target = obj;
+				return;
+			}
+		}
 	}
 
-	private void StopLookingAround()
+	private void OnVisionTriggerExit(GameObject obj)
 	{
-		lookingAround = false;
+		if (obj == target)
+		{
+			target = null;
+		}
 	}
 }

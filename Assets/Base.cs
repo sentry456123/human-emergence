@@ -18,6 +18,11 @@ public class Base : MonoBehaviour
 	private int health;
 	private HealthBar healthBar;
 
+	public int Health
+	{
+		get { return health; }
+	}
+
 	void Start()
 	{
 		healthBar = GetComponent<HealthBar>();
@@ -69,5 +74,13 @@ public class Base : MonoBehaviour
 		var quaternion = initialUnitRotation;
 		var unit = Instantiate(units[Random.Range(0, units.Capacity)], position, quaternion);
 		unit.team = team;
+		if (team.IsAlly(new Team(1)))
+		{
+			unit.SetColor(Color.red);
+		}
+		else if (team.IsAlly(new Team(2)))
+		{
+			unit.SetColor(Color.blue);
+		}
 	}
 }

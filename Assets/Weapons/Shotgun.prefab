@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 3320391426565488798}
   - component: {fileID: 4058279654560560466}
   m_Layer: 6
-  m_Name: Sniper
+  m_Name: Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 6269937781927525285}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 0.1, y: 1.4, z: 1}
+  m_LocalScale: {x: 0.1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4767855130586967657}
@@ -108,7 +108,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.18867922, g: 0.18867922, b: 0.18867922, a: 1}
+  m_Color: {r: 0.7264151, g: 0, b: 0.108071096, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -131,12 +131,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shooter: {fileID: 0}
-  cooldown: 3
-  recoilPerShot: 2
-  maxRecoil: 2.5
-  bullet: {fileID: 4689763936418716206, guid: d2324c3c86d38e340add4523d2e0e958, type: 3}
+  cooldown: 1.2
+  recoilPerShot: 5
+  maxRecoil: 1.5
+  scattering: 10
+  bullet: {fileID: 4689763936418716206, guid: cb7826e90f948fd40acd6fe4fe07fc1a, type: 3}
   muzzle: {fileID: 2926632788630030760}
   shotSound: {fileID: 4058279654560560466}
+  bulletPerShot: 9
 --- !u!82 &4058279654560560466
 AudioSource:
   m_ObjectHideFlags: 0
@@ -147,7 +149,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: df5152f7de2942e48a3b79e6fdaee1bc, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 194fe9c1c2169a840bef9ea67e69675f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
