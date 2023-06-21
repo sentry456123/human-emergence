@@ -384,7 +384,7 @@ Transform:
   m_GameObject: {fileID: 1131372675}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -50, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 100, z: 1}
+  m_LocalScale: {x: 1, y: 50, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -412,7 +412,7 @@ MonoBehaviour:
   - {fileID: 3158264495997960880, guid: 283b60769e789074082a7f4fcc5ede61, type: 3}
   - {fileID: 3158264495997960880, guid: 973ae1e90d4bec4439a1822ca234e344, type: 3}
   initialUnitRotation: {x: 0, y: 0, z: 0.70710677, w: -0.70710677}
-  cooldown: 2
+  cooldown: 1
   maxHealth: 10000
 --- !u!114 &1131372679
 MonoBehaviour:
@@ -583,7 +583,7 @@ Transform:
   m_GameObject: {fileID: 1152671772}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 50, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 100, z: 1}
+  m_LocalScale: {x: 1, y: 50, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -611,7 +611,7 @@ MonoBehaviour:
   - {fileID: 3158264495997960880, guid: 283b60769e789074082a7f4fcc5ede61, type: 3}
   - {fileID: 3158264495997960880, guid: 973ae1e90d4bec4439a1822ca234e344, type: 3}
   initialUnitRotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
-  cooldown: 2
+  cooldown: 1
   maxHealth: 10000
 --- !u!114 &1152671776
 MonoBehaviour:

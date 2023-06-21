@@ -137,9 +137,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     id: 0
-  speed: 20
-  range: 20
-  damage: 12
+  speed: 25
+  range: 40
+  damage: 14
 --- !u!50 &5268319664103341849
 Rigidbody2D:
   serializedVersion: 4

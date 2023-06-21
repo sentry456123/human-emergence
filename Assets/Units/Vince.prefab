@@ -106,8 +106,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   team:
     id: 0
-  speed: 3
-  rotationSpeed: 25
+  speed: 2
+  rotationSpeed: 15
   rotationModifier: 90
   maxHealth: 100
   weapon: {fileID: 6780770187187370281}
@@ -424,7 +424,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 10
+  m_Radius: 20
 --- !u!114 &1340272216777633593
 MonoBehaviour:
   m_ObjectHideFlags: 0

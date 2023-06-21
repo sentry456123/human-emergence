@@ -134,9 +134,11 @@ MonoBehaviour:
   cooldown: 5
   recoilPerShot: 5
   maxRecoil: 20
+  scattering: 0
   bullet: {fileID: 4689763936418716206, guid: d2324c3c86d38e340add4523d2e0e958, type: 3}
   muzzle: {fileID: 2926632788630030760}
   shotSound: {fileID: 4058279654560560466}
+  bulletPerShot: 1
 --- !u!82 &4058279654560560466
 AudioSource:
   m_ObjectHideFlags: 0
@@ -147,7 +149,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: df5152f7de2942e48a3b79e6fdaee1bc, type: 3}
+  m_audioClip: {fileID: 8300000, guid: aa3ff21f8432b5f43bcc0dbbba4c3980, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

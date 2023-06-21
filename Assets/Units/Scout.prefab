@@ -110,7 +110,7 @@ MonoBehaviour:
   speed: 4
   rotationSpeed: 20
   rotationModifier: 90
-  maxHealth: 60
+  maxHealth: 80
   weapon: {fileID: 556662143342955540}
   vision: {fileID: 5897156949450209945}
 --- !u!58 &6040280874708774587

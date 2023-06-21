@@ -139,7 +139,7 @@ MonoBehaviour:
     id: 0
   speed: 30
   range: 40
-  damage: 14
+  damage: 13
 --- !u!50 &5268319664103341849
 Rigidbody2D:
   serializedVersion: 4

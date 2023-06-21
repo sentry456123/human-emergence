@@ -132,11 +132,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shooter: {fileID: 0}
   cooldown: 0.1
-  recoilPerShot: 0.2
-  maxRecoil: 10
+  recoilPerShot: 1
+  maxRecoil: 9
+  scattering: 0
   bullet: {fileID: 8113153362440502865, guid: 47b768db797159748a8779b4d5bac127, type: 3}
   muzzle: {fileID: 2926632788630030760}
   shotSound: {fileID: 4058279654560560466}
+  bulletPerShot: 1
 --- !u!82 &4058279654560560466
 AudioSource:
   m_ObjectHideFlags: 0
