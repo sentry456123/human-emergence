@@ -13,6 +13,8 @@ public class HealthBar : MonoBehaviour
 	private Image background;
 	private Slider slider;
 
+	private Vector3 initialScale;
+
 	void Start()
     {
 		bar = Instantiate(barPrefab, FindObjectOfType<Canvas>().transform);
@@ -21,11 +23,14 @@ public class HealthBar : MonoBehaviour
 		slider = background.GetComponent<Slider>();
 		slider.maxValue = maxHealth;
 		slider.value = health;
+
+		initialScale = background.transform.localScale;
 	}
 
     void Update()
     {
 		background.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0.0f, 0.5f, 0.0f));
+		background.transform.localScale = initialScale / Camera.main.orthographicSize * 5.0f;
 		slider.maxValue = maxHealth;
 		slider.value = health;
 	}

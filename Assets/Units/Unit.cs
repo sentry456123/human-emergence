@@ -11,7 +11,7 @@ public class Unit : MonoBehaviour
 
 	[SerializeField] private float speed = 1.0f;
 	[SerializeField] private float rotationSpeed = 1.0f;
-	[SerializeField, Range(0, 360)] private float rotationModifier;
+	[SerializeField, Range(0, 360)] private float rotationOffset;
 	[SerializeField] private int maxHealth = 100;
 	[SerializeField] private Weapon weapon;
 	[SerializeField] private Vision vision;
@@ -50,6 +50,8 @@ public class Unit : MonoBehaviour
 
 	void Start()
 	{
+		RandomizeStats();
+
 		direction = transform.rotation;
 
 		healthBar = GetComponent<HealthBar>();
@@ -121,6 +123,38 @@ public class Unit : MonoBehaviour
 		}
 	}
 
+	private void RandomizeStats()
+	{
+		float randomNumber = 1.0f;
+
+		for (int i = 0; i < 100; i++)
+		{
+			randomNumber *= Random.Range(0.95f, 1.05f);
+		}
+		maxHealth = (int)(maxHealth * randomNumber);
+
+		randomNumber = 1.0f;
+		for (int i = 0; i < 100; i++)
+		{
+			randomNumber *= Random.Range(0.95f, 1.05f);
+		}
+		speed *= randomNumber;
+
+		randomNumber = 1.0f;
+		for (int i = 0; i < 100; i++)
+		{
+			randomNumber *= Random.Range(0.95f, 1.05f);
+		}
+		rotationSpeed *= randomNumber;
+
+		randomNumber = 1.0f;
+		for (int i = 0; i < 100; i++)
+		{
+			randomNumber *= Random.Range(0.95f, 1.05f);
+		}
+		vision.GetComponent<CircleCollider2D>().radius *= randomNumber;
+	}
+
 	private float Distance(GameObject obj)
 	{
 		return Vector3.Distance(obj.transform.position, transform.position);
@@ -129,7 +163,7 @@ public class Unit : MonoBehaviour
 	private bool Target(GameObject target)
 	{
 		Vector3 vectorToTarget = target.transform.position - transform.position;
-		float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - rotationModifier;
+		float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - rotationOffset;
 		Quaternion quaternion = Quaternion.AngleAxis(angle, Vector3.forward);
 		Quaternion targetRotation = Quaternion.Slerp(transform.rotation, quaternion, Time.fixedDeltaTime * RotationSpeed);
 		float rotationAmount = Quaternion.Angle(transform.rotation, quaternion);
