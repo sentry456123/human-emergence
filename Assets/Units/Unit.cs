@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -15,29 +14,22 @@ public class Unit : MonoBehaviour
 	[SerializeField] private int maxHealth = 100;
 	[SerializeField] private Weapon weapon;
 	[SerializeField] private Vision vision;
+	[SerializeField] private bool randomizeStats = true;
 
 	private HealthBar healthBar;
 	private int health;
 	private Quaternion direction;
 	private bool moving = false;
 	private GameObject target;
+	private float aimingSkill = 1.0f;
+	private bool isControlledByPlayer = false;
 
-	public int Health
-	{
-		get { return health; }
-	}
+	public int Health => health;
+	public float AimingSkill => aimingSkill;
+	private float MovingSpeed => speed;
+	private float RotationSpeed => rotationSpeed;
 
-	private float MovingSpeed
-	{
-		get { return speed * ((float)health / (float)maxHealth); }
-	}
-
-	private float RotationSpeed
-	{
-		get { return rotationSpeed * ((float)health / (float)maxHealth); }
-	}
-
-	public void SetWeapon(Weapon weapon)
+	public void SetWeapon(Weapon weapon) 
 	{
 		this.weapon = weapon;
 	}
@@ -46,6 +38,28 @@ public class Unit : MonoBehaviour
 	{
 		var spriteRenderer = GetComponent<SpriteRenderer>();
 		spriteRenderer.material.color = color;
+	}
+
+	public void PlayerBegin()
+	{
+		isControlledByPlayer = true;
+	}
+
+	public void PlayerEnd()
+	{
+		isControlledByPlayer = false;
+	}
+
+	public void PlayerSetFire(bool fire)
+	{
+		weapon.SetTrigger(fire);
+	}
+
+	public void PlayerMove(Vector2 direction)
+	{
+		direction.Normalize();
+
+		transform.position += new Vector3(direction.x * MovingSpeed * Time.deltaTime, direction.y * MovingSpeed * Time.deltaTime, 0.0f);
 	}
 
 	void Start()
@@ -73,32 +87,39 @@ public class Unit : MonoBehaviour
 		healthBar.maxHealth = maxHealth;
 		healthBar.health = health;
 
-		if (moving)
+		if (!isControlledByPlayer)
 		{
-			Move();
+			if (moving)
+			{
+				Move();
+			}
 		}
+
 	}
 
 	void FixedUpdate()
 	{
-		if (!weapon)
+		if (!isControlledByPlayer)
 		{
-			return;
-		}
-
-		if (target != null)
-		{
-			moving = false;
-			if (Target(target))
+			if (!weapon)
 			{
-				weapon.SetTrigger(true);
+				return;
 			}
-		}
-		else
-		{
-			LookForward();
-			moving = true;
-			weapon.SetTrigger(false);
+
+			if (target != null)
+			{
+				moving = false;
+				if (Target(target))
+				{
+					weapon.SetTrigger(true);
+				}
+			}
+			else
+			{
+				LookForward();
+				moving = true;
+				weapon.SetTrigger(false);
+			}
 		}
 	}
 
@@ -107,10 +128,10 @@ public class Unit : MonoBehaviour
 		var obj = collision.gameObject;
 		if (obj.TryGetComponent(out Bullet bullet))
 		{
-			if (bullet.team.IsAlly(team))
-			{
+			if (!bullet.Collidable)
 				return;
-			}
+			if (bullet.team.IsAlly(team))
+				return;
 			health -= bullet.Damage;
 		}
 		else if (obj.TryGetComponent(out Base bas))
@@ -127,32 +148,42 @@ public class Unit : MonoBehaviour
 	{
 		float randomNumber = 1.0f;
 
-		for (int i = 0; i < 100; i++)
+		if (randomizeStats)
 		{
-			randomNumber *= Random.Range(0.95f, 1.05f);
-		}
-		maxHealth = (int)(maxHealth * randomNumber);
+			for (int i = 0; i < 200; i++)
+			{
+				randomNumber *= Random.Range(0.95f, 1.05f);
+			}
+			maxHealth = (int)(maxHealth * randomNumber);
 
-		randomNumber = 1.0f;
-		for (int i = 0; i < 100; i++)
-		{
-			randomNumber *= Random.Range(0.95f, 1.05f);
-		}
-		speed *= randomNumber;
+			randomNumber = 1.0f;
+			for (int i = 0; i < 200; i++)
+			{
+				randomNumber *= Random.Range(0.95f, 1.05f);
+			}
+			speed *= randomNumber;
 
-		randomNumber = 1.0f;
-		for (int i = 0; i < 100; i++)
-		{
-			randomNumber *= Random.Range(0.95f, 1.05f);
-		}
-		rotationSpeed *= randomNumber;
+			randomNumber = 1.0f;
+			for (int i = 0; i < 200; i++)
+			{
+				randomNumber *= Random.Range(0.95f, 1.05f);
+			}
+			rotationSpeed *= randomNumber;
 
-		randomNumber = 1.0f;
-		for (int i = 0; i < 100; i++)
-		{
-			randomNumber *= Random.Range(0.95f, 1.05f);
+			randomNumber = 1.0f;
+			for (int i = 0; i < 10; i++)
+			{
+				randomNumber *= Random.Range(0.95f, 1.05f);
+			}
+			vision.GetComponent<CircleCollider2D>().radius *= randomNumber;
+
+			randomNumber = 1.0f;
+			for (int i = 0; i < 200; i++)
+			{
+				randomNumber *= Random.Range(0.95f, 1.05f);
+			}
+			aimingSkill *= randomNumber;
 		}
-		vision.GetComponent<CircleCollider2D>().radius *= randomNumber;
 	}
 
 	private float Distance(GameObject obj)

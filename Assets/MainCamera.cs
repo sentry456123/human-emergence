@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class MainCamera : MonoBehaviour
 {
+	public Transform? toFollow;
 	[SerializeField] private float speed = 5.0f;
-	[SerializeField] private Transform? follow;
 
 	private Camera target;
 	private float desiredZoom;
@@ -20,7 +20,7 @@ public class MainCamera : MonoBehaviour
 	{
 		float dash = Input.GetKey(KeyCode.LeftShift) ? 3.0f : 1.0f;
 
-		if (follow == null)
+		if (toFollow == null)
 		{
 			if (Input.GetKey(KeyCode.W))
 			{
@@ -41,8 +41,7 @@ public class MainCamera : MonoBehaviour
 		}
 		else
 		{
-			transform.position = follow.position;
-			transform.Translate(0.0f, 0.0f, -1.0f);
+			transform.position = toFollow.position;
 		}
 		if (Input.GetAxis("Mouse ScrollWheel") > 0)
 		{

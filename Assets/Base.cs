@@ -18,10 +18,7 @@ public class Base : MonoBehaviour
 	private int health;
 	private HealthBar healthBar;
 
-	public int Health
-	{
-		get { return health; }
-	}
+	public int Health => health;
 
 	void Start()
 	{
@@ -36,6 +33,7 @@ public class Base : MonoBehaviour
 		if (health <= 0)
 		{
 			Destroy(gameObject);
+			return;
 		}
 
 		healthBar.maxHealth = maxHealth;
@@ -60,6 +58,8 @@ public class Base : MonoBehaviour
 		}
 		else if (obj.TryGetComponent(out Bullet bullet))
 		{
+			if (!bullet.Collidable)
+				return;
 			if (bullet.team.IsAlly(team))
 				return;
 			health -= bullet.Damage;

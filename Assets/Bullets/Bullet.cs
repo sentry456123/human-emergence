@@ -10,20 +10,18 @@ public class Bullet : MonoBehaviour
 	[SerializeField] private float speed = 20.0f;
 	[SerializeField] private float range = 3.0f;
 	[SerializeField] private int damage = 1;
+	[SerializeField] private bool collidable = true;
 
 	private Rigidbody2D rBody;
 	private float spawnedTime;
 
-	public int Damage
-	{
-		get { return damage; }
-	}
+	public int Damage { get => damage; }
+	public bool Collidable {  get => collidable; }
 
 	void Start()
 	{
 		rBody = GetComponent<Rigidbody2D>();
 		spawnedTime = Time.time;
-		
 	}
 
 	void Update()
@@ -41,6 +39,9 @@ public class Bullet : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
+		if (!collidable)
+			return;
+
 		var obj = collision.gameObject;
 		if (obj.CompareTag("Bullet"))
 			return;

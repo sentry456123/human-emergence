@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5798455780613323791}
@@ -56,8 +56,9 @@ MonoBehaviour:
   rotationSpeed: 7
   rotationOffset: 90
   maxHealth: 400
-  weapon: {fileID: 0}
+  weapon: {fileID: 2980948178542310065}
   vision: {fileID: 1340272216777633593}
+  randomizeStats: 0
 --- !u!50 &6903968243538510016
 Rigidbody2D:
   serializedVersion: 4
@@ -264,7 +265,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 22
+  m_Radius: 10
 --- !u!114 &1340272216777633593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,6 +286,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1202560435748544808}
     m_Modifications:
+    - target: {fileID: 3320391426565488798, guid: ec5fef150b8890345b7e4bdcb5430fe8, type: 3}
+      propertyPath: cooldown
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6269937781927525285, guid: ec5fef150b8890345b7e4bdcb5430fe8, type: 3}
       propertyPath: m_Name
       value: Recon Weapon
@@ -311,7 +316,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7439643297007665080, guid: ec5fef150b8890345b7e4bdcb5430fe8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7439643297007665080, guid: ec5fef150b8890345b7e4bdcb5430fe8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -350,6 +355,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec5fef150b8890345b7e4bdcb5430fe8, type: 3}
+--- !u!114 &2980948178542310065 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3320391426565488798, guid: ec5fef150b8890345b7e4bdcb5430fe8, type: 3}
+  m_PrefabInstance: {fileID: 525253171970109999}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 687887ea1cc640e47ab3518129da918c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6950460309172456855 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7439643297007665080, guid: ec5fef150b8890345b7e4bdcb5430fe8, type: 3}

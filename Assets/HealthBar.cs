@@ -25,6 +25,8 @@ public class HealthBar : MonoBehaviour
 		slider.value = health;
 
 		initialScale = background.transform.localScale;
+
+		background.transform.localScale = initialScale / Camera.main.orthographicSize * 5.0f;
 	}
 
     void Update()
